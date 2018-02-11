@@ -2,11 +2,9 @@
   "name": "telegram_chuck_norris_bot",
   "version": "0.1.0",
   "license": "MIT",
-  "author":
-    "Cody Brunner <rockchalkwushock@icloud.com> (https://codybrunner.rocks)",
+  "author": "Cody Brunner <rockchalkwushock@icloud.com> (https://codybrunner.rocks)",
   "description": "Chuck Norris is now on Telegram",
-  "repository":
-    "https://github.com/rockchalkwushock/telegram_chuck_norris_bot.git",
+  "repository": "https://github.com/rockchalkwushock/telegram_chuck_norris_bot.git",
   "main": "index.js",
   "scripts": {
     "cm": "nps commit",
@@ -16,6 +14,7 @@
     "test": "snyk test && nps test"
   },
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "micro-bot": "^2.2.2"
   },
   "devDependencies": {
@@ -71,7 +70,12 @@
     "env": {
       "NODE_ENV": "production"
     },
-    "files": ["./lib", "index.js", "package.json", "yarn.lock"],
+    "files": [
+      "./lib",
+      "index.js",
+      "package.json",
+      "yarn.lock"
+    ],
     "name": "telegram_chuck_norris_bot"
   }
 }
