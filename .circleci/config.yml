@@ -60,10 +60,10 @@ jobs:
           name: Deploy Bot.
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              now -t ${NOW_TOKEN} -n=telegram_chuck_norris_bot
+              now -t ${NOW_TOKEN} -e BOT_TOKEN=${BOT_TOKEN} -n=telegram_chuck_norris_bot
               now -t ${NOW_TOKEN} alias telegram_chuck_norris_bot_v1
             elif [ "${CIRCLE_BRANCH}" == "development" ]; then
-              now -t ${NOW_TOKEN} -n=telegram_chuck_norris_bot
+              now -t ${NOW_TOKEN} -e BOT_TOKEN=${BOT_TOKEN} -n=telegram_chuck_norris_bot
               now -t ${NOW_TOKEN} alias telegram_chuck_norris_bot_beta
             else
               echo "This failed miserably!"
