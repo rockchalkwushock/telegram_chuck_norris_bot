@@ -2,18 +2,16 @@
   "name": "telegram_chuck_norris_bot",
   "version": "0.1.0",
   "license": "MIT",
-  "author":
-    "Cody Brunner <rockchalkwushock@icloud.com> (https://codybrunner.rocks)",
-  "description": "Testing out the Telegram Bot API",
-  "repository":
-    "https://github.com/rockchalkwushock/telegram_chuck_norris_bot.git",
+  "author": "Cody Brunner <rockchalkwushock@icloud.com> (https://codybrunner.rocks)",
+  "description": "Chuck Norris is now on Telegram",
+  "repository": "https://github.com/rockchalkwushock/telegram_chuck_norris_bot.git",
   "main": "index.js",
   "scripts": {
     "cm": "nps commit",
     "dev": "nps dev",
     "now_start": "micro-bot -d ${NOW_URL}",
     "start": "nps",
-    "test": "nps test"
+    "test": "snyk test && nps test"
   },
   "dependencies": {
     "micro-bot": "^2.2.2"
@@ -72,7 +70,9 @@
     "env": {
       "NODE_ENV": "production"
     },
-    "files": [".env, package.json, yarn.lock"],
+    "files": [
+      ".env, package.json, yarn.lock"
+    ],
     "name": "telegram_chuck_norris_bot"
   }
 }
