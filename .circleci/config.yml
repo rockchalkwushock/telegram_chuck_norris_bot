@@ -1,0 +1,91 @@
+version: 2
+jobs:
+  checkout_code:
+    docker:
+      - image: 'circleci/node:latest'
+    working_directory: ~/telegram-test-bot
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/telegram-test-bot
+      - restore_cache:
+          keys:
+            - 'yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}'
+            - 'yarn-cache-{{ .Branch }}'
+            - yarn-cache-
+      - run: yarn install
+      - save_cache:
+          key: 'yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}'
+          paths: node_modules
+      - persist_to_workspace:
+          root: .
+          paths: .
+  check_dependencies:
+    docker:
+      - image: 'circleci/node:latest'
+    working_directory: ~/telegram-test-bot
+    steps:
+      - attach_workspace:
+          at: ~/telegram-test-bot
+      - run: yarn install
+      - run: yarn start validate
+  test_and_report:
+    docker:
+      - image: 'circleci/node:latest'
+    working_directory: ~/telegram-test-bot
+    steps:
+      - attach_workspace:
+          at: ~/telegram-test-bot
+      - run: yarn install
+      - run: yarn start test.coverage
+      - run: yarn start reportCoverage
+      - store_artifacts:
+          path: ./coverage/clover.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results:
+          path: ./coverage/clover.xml
+  deploy_bot:
+    docker:
+      - image: 'circleci/node:latest'
+    working_directory: ~/telegram-test-bot
+    steps:
+      - attach_workspace:
+          at: ~/telegram-test-bot
+      - run: yarn install
+      - run: sudo yarn global add now
+      - deploy:
+          name: Deploy Bot.
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              now -t ${NOW_TOKEN} -n=telegram_test_bot
+              now -t ${NOW_TOKEN} alias telegram_test_bot_v1
+            elif [ "${CIRCLE_BRANCH}" == "development" ]; then
+              now -t ${NOW_TOKEN} -n=telegram_test_bot
+              now -t ${NOW_TOKEN} alias telegram_test_bot_v1_beta
+            else
+              echo "This failed miserably!"
+            fi
+workflows:
+  version: 2
+  development:
+    jobs:
+      - checkout_code
+      - check_dependencies:
+          requires:
+            - checkout_code
+      - test_and_report:
+          requires:
+            - checkout_code
+            - check_dependencies
+      - deploy_bot:
+          requires:
+            - check_dependencies
+            - test_and_report
+          filters:
+            branches:
+              only:
+                - development
+                - master
