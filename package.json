@@ -1,15 +1,18 @@
 {
-  "name": "telegram_test_bot",
+  "name": "telegram_chuck_norris_bot",
   "version": "0.1.0",
   "license": "MIT",
   "author":
     "Cody Brunner <rockchalkwushock@icloud.com> (https://codybrunner.rocks)",
   "description": "Testing out the Telegram Bot API",
-  "repository": "https://github.com/rockchalkwushock/telegram_test_bot.git",
+  "repository":
+    "https://github.com/rockchalkwushock/telegram_chuck_norris_bot.git",
   "main": "index.js",
   "scripts": {
     "cm": "nps commit",
-    "start": "micro-bot -d ${NOW_URL}",
+    "dev": "nps dev",
+    "now_start": "micro-bot -d ${NOW_URL}",
+    "start": "nps",
     "test": "nps test"
   },
   "dependencies": {
@@ -43,7 +46,6 @@
   },
   "jest": {
     "bail": true,
-    "collectCoverageFrom": ["./bot"],
     "coverageThreshold": {
       "global": {
         "branches": 50,
@@ -62,12 +64,15 @@
     ]
   },
   "now": {
-    "alias": ["telegram_test_bot_v1", "telegram_test_bot_v1_beta"],
+    "alias": [
+      "telegram_chuck_norris_bot_v1",
+      "telegram_chuck_norris_bot_v1_beta"
+    ],
     "dotenv": true,
     "env": {
       "NODE_ENV": "production"
     },
     "files": [".env, package.json, yarn.lock"],
-    "name": "telegram_test_bot"
+    "name": "telegram_chuck_norris_bot"
   }
 }

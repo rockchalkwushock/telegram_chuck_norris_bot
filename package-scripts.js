@@ -6,6 +6,7 @@ module.exports = {
   scripts: {
     clean: series(rimraf('coverage')),
     commit: 'git cz',
+    dev: "nodemon --exec 'micro-bot -e'",
     reportCoverage: 'codecov',
     test: {
       default: 'jest --runInBand --updateSnapshot',

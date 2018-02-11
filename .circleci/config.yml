@@ -3,11 +3,11 @@ jobs:
   checkout_code:
     docker:
       - image: 'circleci/node:latest'
-    working_directory: ~/telegram-test-bot
+    working_directory: ~/telegram_chuck_norris_bot
     steps:
       - checkout
       - attach_workspace:
-          at: ~/telegram-test-bot
+          at: ~/telegram_chuck_norris_bot
       - restore_cache:
           keys:
             - 'yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}'
@@ -23,19 +23,19 @@ jobs:
   check_dependencies:
     docker:
       - image: 'circleci/node:latest'
-    working_directory: ~/telegram-test-bot
+    working_directory: ~/telegram_chuck_norris_bot
     steps:
       - attach_workspace:
-          at: ~/telegram-test-bot
+          at: ~/telegram_chuck_norris_bot
       - run: yarn install
       - run: yarn start validate
   test_and_report:
     docker:
       - image: 'circleci/node:latest'
-    working_directory: ~/telegram-test-bot
+    working_directory: ~/telegram_chuck_norris_bot
     steps:
       - attach_workspace:
-          at: ~/telegram-test-bot
+          at: ~/telegram_chuck_norris_bot
       - run: yarn install
       - run: yarn start test.coverage
       - run: yarn start reportCoverage
@@ -50,21 +50,21 @@ jobs:
   deploy_bot:
     docker:
       - image: 'circleci/node:latest'
-    working_directory: ~/telegram-test-bot
+    working_directory: ~/telegram_chuck_norris_bot
     steps:
       - attach_workspace:
-          at: ~/telegram-test-bot
+          at: ~/telegram_chuck_norris_bot
       - run: yarn install
       - run: sudo yarn global add now
       - deploy:
           name: Deploy Bot.
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              now -t ${NOW_TOKEN} -n=telegram_test_bot
-              now -t ${NOW_TOKEN} alias telegram_test_bot_v1
+              now -t ${NOW_TOKEN} -n=telegram_chuck_norris_bot
+              now -t ${NOW_TOKEN} alias telegram_chuck_norris_bot_v1
             elif [ "${CIRCLE_BRANCH}" == "development" ]; then
-              now -t ${NOW_TOKEN} -n=telegram_test_bot
-              now -t ${NOW_TOKEN} alias telegram_test_bot_v1_beta
+              now -t ${NOW_TOKEN} -n=telegram_chuck_norris_bot
+              now -t ${NOW_TOKEN} alias telegram_chuck_norris_bot_beta
             else
               echo "This failed miserably!"
             fi

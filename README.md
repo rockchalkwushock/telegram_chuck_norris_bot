@@ -1,3 +1,3 @@
-# telegram_test_bot
+# [@ChuckNorrisBot](https://telegram.me/ChuckNorrisJokeBot)
 
-Testing out the Telegram Bot API
+Chuck Norris jokes are now on Telegram! :sunglasses: :tada:
