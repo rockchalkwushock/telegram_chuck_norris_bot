@@ -11,7 +11,8 @@
   "scripts": {
     "cm": "nps commit",
     "dev": "nps dev",
-    "start": "micro-bot -d ${NOW_URL}",
+    "now-start": "micro-bot -d ${NOW_URL}",
+    "start": "nps",
     "test": "snyk test && nps test"
   },
   "dependencies": {
