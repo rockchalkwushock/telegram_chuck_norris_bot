@@ -1,5 +1,7 @@
 # [@ChuckNorrisJokeBot](https://telegram.me/ChuckNorrisJokeBot)
 
+Chuck Norris jokes are now on Telegram! :sunglasses: :tada:
+
 [![CircleCI](https://img.shields.io/circleci/project/github/rockchalkwushock/telegram_chuck_norris_bot.svg?style=flat-square)](https://circleci.com/gh/rockchalkwushock/telegram_chuck_norris_bot)
 [![Codecov](https://img.shields.io/codecov/c/github/rockchalkwushock/telegram_chuck_norris_bot.svg?style=flat-square)](https://codecov.io/gh/rockchalkwushock/telegram_chuck_norris_bot)
 
@@ -11,7 +13,7 @@
 [![Equimper](https://img.shields.io/badge/code%20style-equimper-blue.svg?style=flat-square)](https://github.com/EQuimper/eslint-config-equimper)
 [![nps](https://img.shields.io/badge/scripts%20run%20with-nps-blue.svg?style=flat-square)](https://github.com/kentcdodds/nps)
 
-Chuck Norris jokes are now on Telegram! :sunglasses: :tada:
+## [Blog Post](https://codybrunner.rocks/2018-02-11/how-to-build-a-telegram-bot-with-node-js/)
 
 ## Screenshots
 
